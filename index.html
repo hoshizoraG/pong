@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Site</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charse"UTF-8">
+  <title>Animation avec requestAnimationFrame</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <script defer src="scripts/main.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>Bienvenue sur mon site</h1>
-    </header>
-    <main>
-        <p>Ceci est une base de page HTML.</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 Mon Site</p>
-    </footer>
-    <script src="main.js"></script>
+  <h1>Pong</h1>
+  
+  <canvas id="demo" width="400" height="800"></canvas>
+  <button id="facile" onclick="modefacile()">Facile</button>
+  <button id="moyen" onclick="modeMoyen()">Moyen</button>
+  <button id="dur" onclick="modeDur()">Difficile</button>
+  <p id ="score"></p>
+  <p id ="loose"></p>
+  <p id ="bestScore"></p>
 </body>
+
 </html>

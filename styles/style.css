@@ -1,0 +1,53 @@
+body {
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+canvas {
+    background: #222;
+    display: block;
+    margin: 2rem auto;
+    border: 2px solid white;
+}
+
+#stop {
+    width: 100px;
+    border: 2px solid darkgrey;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 10px;
+}
+
+button {
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(90deg, #444, #222 80%);
+    color: #fff;
+    border: 2px solid #888;
+    border-radius: 8px;
+    padding: 12px 28px;
+    margin: 12px 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #666, #333 80%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+button:active {
+    background: #111;
+    transform: scale(0.98);
+}
+
+button.selected {
+    box-shadow: 0 0 0 4px orange, 0 2px 8px rgba(0,0,0,0.2);
+    border-color: orange;
+    z-index: 1;
+}
