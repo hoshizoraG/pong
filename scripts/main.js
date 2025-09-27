@@ -9,7 +9,7 @@ let xBall = canvas.width / 2;
 let yBall = canvas.height / 2;
 let dx = 0;
 let dy = 0;
-let speed = 2;
+let speed = 4;
 
 let isPlaying = false;
 let startTime = null;
@@ -108,13 +108,18 @@ function resetGame() {
 
 function launchBall() {
   if (!isPlaying) {
-    let angles = [
-      Math.random() * (Math.PI / 3) + Math.PI / 6,
-      Math.random() * (Math.PI / 3) + (5 * Math.PI) / 6
-    ];
-    let angle = angles[Math.floor(Math.random() * 2)];
+  
+    const minAngle = Math.PI / 6;    
+    const maxAngle = (5 * Math.PI) / 6; 
+    let angle;
+    if (Math.random() < 0.5) {
+      angle = Math.random() * (maxAngle - minAngle) + minAngle; 
+    } else {
+      angle = Math.random() * (maxAngle - minAngle) + Math.PI + minAngle;
+    }
+
     dx = speed * Math.cos(angle);
-    dy = -Math.abs(speed * Math.sin(angle));
+    dy = -Math.abs(speed * Math.sin(angle)); 
     isPlaying = true;
     startTime = Date.now();
     elapsedTime = 0;
@@ -132,6 +137,13 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowLeft") keys.left = false;
   if (e.key === "ArrowRight") keys.right = false;
 });
+
+const btnLeft = document.getElementById("btn-left"); 
+const btnRight = document.getElementById("btn-right"); 
+btnLeft.addEventListener("touchstart", () => keys.left = true); 
+btnLeft.addEventListener("touchend", () => keys.left = false); 
+btnRight.addEventListener("touchstart", () => keys.right = true); 
+btnRight.addEventListener("touchend", () => keys.right = false);
 
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);

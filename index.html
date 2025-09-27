@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-  <meta charse"UTF-8">
-  <title>Animation avec requestAnimationFrame</title>
+  <meta charset="UTF-8">
+  <title>Pong</title>
   <link rel="stylesheet" href="styles/style.css">
   <script defer src="scripts/main.js"></script>
 </head>
@@ -12,11 +13,20 @@
   <h1>Pong</h1>
   
   <canvas id="demo" width="400" height="800"></canvas>
-  <button id="demarrer" onclick="launchBall()" > Démarrer</button>
-<button id="reset" onclick="resetGame()">Réinitialiser</button>
-  <p id ="score"></p>
-  <p id ="loose"></p>
-  <p id ="bestScore"></p>
+  
+  <button id="demarrer" onclick="launchBall()">Démarrer</button>
+  <button id="reset" onclick="resetGame()">Réinitialiser</button>
+
+  <p id="score"></p>
+  <p id="loose"></p>
+  <p id="bestScore"></p>
+
+  
+  <div id="mobile-controls">
+    <button id="btn-left">⬅️</button>
+    <button id="btn-right">➡️</button>
+  </div>
 </body>
 
 </html>
+
