@@ -46,7 +46,8 @@ button:hover {
 }
 
 #mobile-controls {
-    display: none;
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -61,21 +62,10 @@ button:hover {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-@media (max-width: 600px) {
+/* Sur desktop, on cache les contrôles mobiles */
+@media (min-width: 601px) {
     #mobile-controls {
-        display: flex;
-        justify-content: center;
+        display: none;
     }
 
-    button {
-        padding: 14px 20px;
-        font-size: 1rem;
-        margin: 6px 4px;
-    }
-
-    canvas {
-        max-width: 100%;
-        height: auto;
-    }
 }
-
