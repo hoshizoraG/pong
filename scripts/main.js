@@ -1,4 +1,3 @@
-
 const canvas = document.getElementById("demo");
 const ctx = canvas.getContext("2d");
 
@@ -27,11 +26,7 @@ function formatTime(ms) {
   let totalSeconds = Math.floor(ms / 1000);
   let minutes = Math.floor(totalSeconds / 60);
   let seconds = totalSeconds % 60;
-  if (minutes > 0) {
-    return `${minutes} min ${seconds}s`;
-  } else {
-    return `${seconds}s`;
-  }
+  return minutes > 0 ? `${minutes} min ${seconds}s` : `${seconds}s`;
 }
 
 function drawBall() {
@@ -52,12 +47,8 @@ function update() {
     yBall += dy;
     elapsedTime = Date.now() - startTime;
 
-    if (xBall < 15 || xBall > canvas.width - 15) {
-      dx = -dx;
-    }
-    if (yBall < 15) {
-      dy = -dy;
-    }
+    if (xBall < 15 || xBall > canvas.width - 15) dx = -dx;
+    if (yBall < 15) dy = -dy;
     if (
       yBall + 15 >= yRaqu &&
       yBall + 15 <= yRaqu + 10 &&
@@ -75,20 +66,13 @@ function update() {
     }
   }
 
-  if (keys.left && xRaqu > 0) {
-    xRaqu -= paddleSpeed;
-  }
-  if (keys.right && xRaqu < canvas.width - 100) {
-    xRaqu += paddleSpeed;
-  }
+  if (keys.left && xRaqu > 0) xRaqu -= paddleSpeed;
+  if (keys.right && xRaqu < canvas.width - 100) xRaqu += paddleSpeed;
 }
 
 function looser() {
-  if (elapsedTime > bestScore) {
-    bestScore = elapsedTime;
-  }
+  if (elapsedTime > bestScore) bestScore = elapsedTime;
   nbLoose++;
-  alert("Perdu !");
   resetBall();
   isPlaying = false;
 }
@@ -108,18 +92,9 @@ function resetGame() {
 
 function launchBall() {
   if (!isPlaying) {
-  
-    const minAngle = Math.PI / 6;    
-    const maxAngle = (5 * Math.PI) / 6; 
-    let angle;
-    if (Math.random() < 0.5) {
-      angle = Math.random() * (maxAngle - minAngle) + minAngle; 
-    } else {
-      angle = Math.random() * (maxAngle - minAngle) + Math.PI + minAngle;
-    }
-
+    let angle = Math.random() * Math.PI * 2;
     dx = speed * Math.cos(angle);
-    dy = -Math.abs(speed * Math.sin(angle)); 
+    dy = -Math.abs(speed * Math.sin(angle));
     isPlaying = true;
     startTime = Date.now();
     elapsedTime = 0;
@@ -129,21 +104,19 @@ function launchBall() {
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") keys.left = true;
   if (e.key === "ArrowRight") keys.right = true;
-  if (!isPlaying && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
-    launchBall();
-  }
+  if (!isPlaying && (e.key === "ArrowLeft" || e.key === "ArrowRight")) launchBall();
 });
 document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowLeft") keys.left = false;
   if (e.key === "ArrowRight") keys.right = false;
 });
 
-const btnLeft = document.getElementById("btn-left"); 
-const btnRight = document.getElementById("btn-right"); 
-btnLeft.addEventListener("touchstart", () => keys.left = true); 
-btnLeft.addEventListener("touchend", () => keys.left = false); 
-btnRight.addEventListener("touchstart", () => keys.right = true); 
-btnRight.addEventListener("touchend", () => keys.right = false);
+const btnLeft = document.getElementById("btn-left");
+const btnRight = document.getElementById("btn-right");
+btnLeft.addEventListener("touchstart", () => (keys.left = true));
+btnLeft.addEventListener("touchend", () => (keys.left = false));
+btnRight.addEventListener("touchstart", () => (keys.right = true));
+btnRight.addEventListener("touchend", () => (keys.right = false));
 
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -157,4 +130,3 @@ function loop() {
 }
 
 loop();
-
