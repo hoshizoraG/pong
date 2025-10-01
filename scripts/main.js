@@ -144,14 +144,22 @@ if (!isMobile) {
 
 if (isMobile) {
   canvas.addEventListener("touchmove", (e) => {
+    e.preventDefault();
     const touch = e.touches[0];
     const rect = canvas.getBoundingClientRect();
     let posX = touch.clientX - rect.left;
     xRaqu = posX - 50;
     if (xRaqu < 0) xRaqu = 0;
     if (xRaqu > canvas.width - 100) xRaqu = canvas.width - 100;
+  }, { passive: false });
+
+  canvas.addEventListener("touchstart", (e) => {
+    if (!isPlaying) {
+      launchBall();
+    }
   });
 }
+
 
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
