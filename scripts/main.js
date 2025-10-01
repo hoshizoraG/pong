@@ -70,6 +70,7 @@ function update() {
       dx = speed * Math.sin(angle);
       dy = -speed * Math.cos(angle);
       yBall = yRaqu - 15;
+      speed += 0.3;
     }
     if (yBall > canvas.height - 15) {
       looser();
